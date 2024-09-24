@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oi pretinha</title>
+    <style>
+        body {
+            background: url("") #000;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+        }
+
+        .instructions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .question {
+            display: none;
+            font-size: 1.5em;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+
+        .answer {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        #finalMessage, #finalQuestion, #resultMessage {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        #resultImage {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .fogos {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2em;
+            color: #ff0000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions" class="instructions">
+        <h1>Instruções</h1>
+        <p>Leia com muita atenção</p>
+        <p>Marque com o coração</p>
+        <p>Selecione somente aquilo que você tem certeza (não tem volta)</p>
+        <p>Reserve um local tranquilo e reservado</p>
+        <p>Tire pelo menos 5 minutos para apreciar o questionário e pensar nas respostas</p>
+        <p>Saiba que eu te amo acima de tudo e jamais te trocaria por ninguém neste mundo.</p>
+        <p>Te amarei na vida, na morte, na riqueza, na pobreza, e nem a morte vai nos separar.</p>
+        <span class="answer" onclick="startQuiz()">Começar</span>
+    </div>
+
+    <div id="question1" class="question">
+        <h2>Pergunta 1: Você me ama muito?</h2>
+        <span class="answer" onclick="nextQuestion('question1', 'question2')">Sim❤️‍🔥🎉🎊(Vou ficar feliz)</span>
+        <span class="answer" onclick="nextQuestion('question1', 'question2')">Talvez🥺(vou queimar vela)</span>
+        <span class="answer" onclick="nextQuestion('question1', 'question2')">😞(vou fazer amarração)</span>
+    </div>
+
+    <div id="question2" class="question">
+        <h2>Pergunta 2: Você quer passar a vida comigo?</h2>
+        <span class="answer" onclick="nextQuestion('question2', 'question3')">Sim❤️‍🔥🎉🎊</span>
+        <span class="answer" onclick="nextQuestion('question2', 'question3')">Talvez🥺</span>
+        <span class="answer" onclick="nextQuestion('question2', 'question3')">Não sei ainda🫡😥</span>
+        <span class="answer" onclick="nextQuestion('question2', 'question3')">Não😞</span>
+    </div>
+
+    <div id="question3" class="question">
+        <h2>Pergunta 3: Você quer ter um monte de rato, cachorros, gatos, chinchilas e macacos comigo?</h2>
+        <span class="answer" onclick="nextQuestion('question3', 'question4')">Sim❤️‍🔥🎉🎊</span>
+        <span class="answer" onclick="nextQuestion('question3', 'question4')">Talvez🥺</span>
+        <span class="answer" onclick="nextQuestion('question3', 'question4')">Não sei ainda🫡😥</span>
+        <span class="answer" onclick="nextQuestion('question3', 'question4')">Não😞</span>
+    </div>
+
+    <div id="question4" class="question">
+        <h2>Pergunta 4: Você vai me suportar mesmo tomando T e ficando igual ao Hulk?</h2>
+        <span class="answer" onclick="nextQuestion('question4', 'question5')">Sim❤️‍🔥🎉🎊</span>
+        <span class="answer" onclick="nextQuestion('question4', 'question5')">Talvez🥺</span>
+        <span class="answer" onclick="nextQuestion('question4', 'question5')">Não sei ainda🫡😥</span>
+        <span class="answer" onclick="nextQuestion('question4', 'question5')">Não😞</span>
+    </div>
+
+    <div id="question5" class="question">
+        <h2>Pergunta 5: Vai brigar comigo se deixar a roupa espalhada?</h2>
+        <span class="answer" onclick="nextQuestion('question5', 'finalMessage')">Não❤️‍🔥🎉🎊</span>
+        <span class="answer" onclick="nextQuestion('question5', 'finalMessage')">Talvez🥺</span>
+        <span class="answer" onclick="nextQuestion('question5', 'finalMessage')">Não sei ainda🫡😥</span>
+        <span class="answer" onclick="nextQuestion('question5', 'finalMessage')">Sim😞</span>
+    </div>
+
+    <div id="finalMessage">
+        <p>Espero que todas as respostas tenham sido sim, exceto a da roupa espalhada!</p>
+        <span class="answer" onclick="showFinalQuestion()">Próximo</span>
+    </div>
+
+    <div id="finalQuestion">
+        <h1>Então vc quer casar comigo?😍</h1>
+        <span class="answer" onclick="showResult('yes')">Sim</span>
+        <span class="answer" onclick="showResult('no')">Não</span>
+    </div>
+
+    <div id="resultMessage">
+        <img id="resultImage" src="" alt="">
+        <p>EU TE AMO PRETINHA, ESPERO QUE TENHA GOSTADO DA EXPERIÊNCIA.</p>
+        <p>OBS: O PEDIDO É SÉRIO.</p>
+    </div>
+
+    <div class="fogos"></div>
+
+    <footer>
+        <!-- Rodapé pode permanecer vazio ou conter outras informações -->
+    </footer>
+
+    <script>
+        function startQuiz() {
+            document.getElementById('instructions').style.display = 'none';
+            document.getElementById('question1').style.display = 'block';
+        }
+
+        function nextQuestion(currentQuestion, nextQuestion) {
+            document.getElementById(currentQuestion).style.display = 'none';
+            document.getElementById(nextQuestion).style.display = 'block';
+        }
+
+        function showFinalQuestion() {
+            document.getElementById('finalMessage').style.display = 'none';
+            document.getElementById('finalQuestion').style.display = 'block';
+        }
+
+        function showResult(answer) {
+            document.getElementById('finalQuestion').style.display = 'none';
+            document.getElementById('resultMessage').style.display = 'block';
+
+            const imagePath = answer === 'yes' ? 'duas-aliancas-de-casamento-encontram-se-em-grande-girassol-com-fundo-de-ceu-azul_196938-63.jpg' : 'duas-aliancas-de-casamento-encontram-se-em-grande-girassol-com-fundo-de-ceu-azul_196938-63.jpg';
+            document.getElementById('resultImage').src = imagePath;
+
+            if (answer === 'yes') {
+                document.querySelectorAll('.fogos').forEach(fogo => {
+                    fogo.style.display = 'block'; 
+                });
+            } else {
+                document.querySelectorAll('.fogos').forEach(fogo => {
+                    fogo.style.display = 'none'; 
+                });
+            }
+        }
+    </script>
+</body>
+</html>
